@@ -1,0 +1,38 @@
+
+
+"""
+122. Best Time to Buy and Sell Stock II
+You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
+On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time.
+However, you can sell and buy the stock multiple times on the same day, ensuring you never hold more than one share of the stock.
+Find and return the maximum profit you can achieve.
+
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 7
+Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
+Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
+Total profit is 4 + 3 = 7.
+"""
+from typing import List
+# 122) adding profits from each transaction
+
+class Solution:  # Greedy
+    def maxProfit(self, prices: List[int]) -> int:
+        max_profit = 0  # Total profit
+
+        for i in range(1, len(prices)):  # Start from day 1 (compare with previous day)
+                # comparing today's price with yesterday's price
+            if prices[i] > prices[i - 1]:
+                """current_profit = prices[i] - prices[i - 1] orrrrr
+                max_profit += current_profit """
+                max_profit += prices[i] - prices[i - 1]
+                # If today's price is higher than yesterday's, we "buy yesterday, sell today" to capture the gain.
+
+        return max_profit
+
+obj = Solution()
+print(obj.maxProfit([7,1,5,3,6,4]))
+# TC: O(n), SC: O(1)
+
